@@ -74,7 +74,7 @@ def main():
 
         if query.data == '4':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            file = pdf(name,1,'Triennale')
+            file = pdf(name,1,'Magistrale a Ciclo Unico')
             if file == 0:
                 query.message.reply_text('Pare che questo corso non esista.')
             else:
@@ -83,7 +83,7 @@ def main():
 
         if query.data == '5':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            file = pdf(name,1,'Triennale')
+            file = pdf(name,1,'Magistrale')
             if file == 0:
                 query.message.reply_text('Pare che questo corso non esista.')
             else:
