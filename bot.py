@@ -4,8 +4,6 @@ from htmlPdf import pdf
 from dotenv import load_dotenv
 import os
 load_dotenv()
-from server import run
-import threading
 
 name = None
 bot = Bot(os.getenv("API_BOT"))
@@ -82,12 +80,18 @@ def main():
             file = pdf(name,1,'Triennale')
             query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
             query.message.reply_text('Pdf generato.')
-            
+
         if query.data == '6':
-            print('nulla')
+            query.message.reply_text('Tra un attimo arriverà un pdf.')
+            file = pdf(name,2,'Master di Primo Livello')
+            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+            query.message.reply_text('Pdf generato.')
 
         if query.data == '7':
-            print('nulla')
+            query.message.reply_text('Tra un attimo arriverà un pdf.')
+            file = pdf(name,2,'Master di Secondo Livello')
+            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+            query.message.reply_text('Pdf generato.')
 
         
 

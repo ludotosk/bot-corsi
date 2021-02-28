@@ -8,6 +8,7 @@ import re
 urlCorsi = "https://json-server-corsi.herokuapp.com/corsi"
 urlMaster = "https://json-server-corsi.herokuapp.com/master"
 theadCorsi = "<thead><tr><th scope='col'>#</th><th scope='col'>Nome corso</th><th scope='col'>Unviersit&agrave;</th><th scope='col'>Test</th><th scope='col'>Citt&agrave;</th></tr></thead>"
+theadMaster =  "<thead><tr><th scope='col'>#</th><th scope='col'>Nome corso</th><th scope='col'>Unviersit&agrave;</th><th scope='col'>Durata</th><th scope='col'>Lingua</th><th scope='col'>Citt&agrave;</th></tr></thead>"
 tipoMaster = 'tipo'
 tipoCorsi = 't'
 
@@ -17,6 +18,7 @@ def pdf(name, db, tipo):
     global tipoCorsi
     global tipoMaster
     global urlMaster
+    global theadMaster
     tbody = '<tbody>'
 
     i = 1
@@ -26,6 +28,8 @@ def pdf(name, db, tipo):
         varTipo = tipoCorsi
     elif db == 2:
         url = urlMaster
+        thead = theadMaster
+        varTipo = tipoMaster
 
     ploads = {varTipo: tipo}
     r = requests.get(url, params=ploads)
@@ -39,8 +43,8 @@ def pdf(name, db, tipo):
         tbody += '</tbody>'
     elif db == 2:
         for corso in corsi:
-            if re.search(name, corso["n"], re.IGNORECASE):
-                tbody += '<tr><th scope="row">' + str(i) + '</th><td><a href="' + corso["h"] + '">' + corso["n"] + '</a></td><td>' + corso["u"].replace('à', '&agrave;') + '</td><td>' +  corso["a"] + '</td><td>' + corso["s"] + '</td><tr>'
+            if re.search(name, corso["corso"], re.IGNORECASE):
+                tbody += '<tr><th scope="row">' + str(i) + '</th><td><a href="' + corso["link"] + '">' + corso["corso"] + '</a></td><td>' + corso["uni"].replace('à', '&agrave;') + '</td><td>' +  corso["durata"] + '</td><td>' + corso["lingua"] + '</td><td>' + corso["citta"] + '</td><tr>'
                 ++i
         tbody += '</tbody>'    
 
