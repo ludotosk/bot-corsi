@@ -5,15 +5,17 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+#creare log
+
 name = None
 bot = Bot(os.getenv("API_BOT"))
 updater = Updater(os.getenv("API_BOT"), use_context=True)
+os.chdir('/home/tosk/bot-corsi')
 
 def main():
     global updater
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
-
 
     def start(update: Update, context: CallbackContext) -> None:
         """Send a message when the command /start is issued."""
@@ -21,13 +23,11 @@ def main():
             'Benvenuto nel bot di corsiuniversitari.info \nhttps://www.corsiuniversitari.info')
         update.message.reply_text('Quale corso stai cercando?')
 
-
     def cerca(update: Update, context: CallbackContext) -> None:
         """Send a message when the command /start is issued."""
         update.message.reply_text('Quale corso stai cercando?')
 
-
-    def button(update: Update, context: CallbackContext) -> None:        
+    def button(update: Update, context: CallbackContext) -> None:
         query = update.callback_query
         chat_id = query.message.chat_id
         global name
@@ -53,7 +53,8 @@ def main():
 
         if query.data == '2':
             keyboard = [
-                InlineKeyboardButton("Master di primo livello", callback_data='6'),
+                InlineKeyboardButton(
+                    "Master di primo livello", callback_data='6'),
                 InlineKeyboardButton(
                     "Master di secondo livello", callback_data='7'),
             ],
@@ -65,49 +66,53 @@ def main():
 
         if query.data == '3':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            file = pdf(name,1,'Triennale')
+            file = pdf(name, 1, 'Triennale')
             if file == 0:
                 query.message.reply_text('Pare che questo corso non esista.')
             else:
-                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.bot.send_document(
+                    chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
 
         if query.data == '4':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            file = pdf(name,1,'Magistrale a Ciclo Unico')
+            file = pdf(name, 1, 'Magistrale a Ciclo Unico')
             if file == 0:
                 query.message.reply_text('Pare che questo corso non esista.')
             else:
-                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.bot.send_document(
+                    chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
 
         if query.data == '5':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            file = pdf(name,1,'Magistrale')
+            file = pdf(name, 1, 'Magistrale')
             if file == 0:
                 query.message.reply_text('Pare che questo corso non esista.')
             else:
-                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.bot.send_document(
+                    chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
 
         if query.data == '6':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            file = pdf(name,2,'Master di Primo Livello')
+            file = pdf(name, 2, 'Master di Primo Livello')
             if file == 0:
                 query.message.reply_text('Pare che questo corso non esista.')
             else:
-                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.bot.send_document(
+                    chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
 
         if query.data == '7':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            file = pdf(name,2,'Master di Secondo Livello')
+            file = pdf(name, 2, 'Master di Secondo Livello')
             if file == 0:
                 query.message.reply_text('Pare che questo corso non esista.')
             else:
-                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.bot.send_document(
+                    chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
-        
 
     def risposta(update: Update, context: CallbackContext) -> None:
         global name
@@ -120,8 +125,8 @@ def main():
 
         reply_markup = InlineKeyboardMarkup(keyboard)
 
-        update.message.reply_text('Cosa stai cercando?', reply_markup=reply_markup)
-
+        update.message.reply_text(
+            'Cosa stai cercando?', reply_markup=reply_markup)
 
     # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("start", start))
@@ -133,12 +138,13 @@ def main():
         Filters.text & ~Filters.command, risposta))
 
     # Start the Bot
-    updater.start_polling()  
+    updater.start_polling()
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
     # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
-  
+
+
 if __name__ == "__main__":
     main()

@@ -20,7 +20,6 @@ def pdf(name, db, tipo):
     global urlMaster
     global theadMaster
     tbody = '<tbody>'
-    totale = ''
 
     i = 1
     if db == 1:
@@ -40,18 +39,16 @@ def pdf(name, db, tipo):
             if re.search(name, corso["n"], re.IGNORECASE):
                 tbody += '<tr><th scope="row">' + str(i) + '</th><td><a href="' + corso["h"] + '">' + corso["n"] + '</a></td><td>' + corso["u"].replace(
                     'à', '&agrave;') + '</td><td>' + corso["a"] + '</td><td>' + corso["s"] + '</td><tr>'
-                ++i
-                totale += corso["n"]
+                i += 1
         tbody += '</tbody>'
     elif db == 2:
         for corso in corsi:
             if re.search(name, corso["corso"], re.IGNORECASE):
                 tbody += '<tr><th scope="row">' + str(i) + '</th><td><a href="' + corso["link"] + '">' + corso["corso"] + '</a></td><td>' + corso["uni"].replace('à', '&agrave;') + '</td><td>' +  corso["durata"] + '</td><td>' + corso["lingua"] + '</td><td>' + corso["citta"] + '</td><tr>'
-                ++i
-                totale += corso["corso"]
+                i += 1
         tbody += '</tbody>'    
 
-    if len(totale) == 0:
+    if i == 1:
         return 0
 
     f = open("prova.html", "r")
