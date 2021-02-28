@@ -11,7 +11,7 @@ name = None
 bot = Bot(os.getenv("API_BOT"))
 updater = Updater(os.getenv("API_BOT"), use_context=True)
 
-def bot():
+def main():
     global updater
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
@@ -29,8 +29,9 @@ def bot():
         update.message.reply_text('Quale corso stai cercando?')
 
 
-    def button(update: Update, context: CallbackContext) -> None:
+    def button(update: Update, context: CallbackContext) -> None:        
         query = update.callback_query
+        chat_id = query.message.chat_id
         global name
 
         # CallbackQueries need to be answered, even if no notification to the user is needed
@@ -66,19 +67,22 @@ def bot():
 
         if query.data == '3':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            pdf(name,1,'Triennale')
+            file = pdf(name,1,'Triennale')
+            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
             query.message.reply_text('Pdf generato.')
 
         if query.data == '4':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            pdf(name, 1, 'Magistrale a Ciclo Unico')
+            file = pdf(name,1,'Triennale')
+            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
             query.message.reply_text('Pdf generato.')
 
         if query.data == '5':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
-            pdf(name,1,'Magistrale')
+            file = pdf(name,1,'Triennale')
+            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
             query.message.reply_text('Pdf generato.')
-
+            
         if query.data == '6':
             print('nulla')
 
@@ -111,22 +115,12 @@ def bot():
         Filters.text & ~Filters.command, risposta))
 
     # Start the Bot
-    updater.start_polling()
+    updater.start_polling()  
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
     # start_polling() is non-blocking and will stop the bot gracefully.
-
-def main():
-    threads = list()
-    #web server
-    server = threading.Thread(target=run, args=(), daemon=True)
-    server.start()
-    #bot
-    x = threading.Thread(target=bot, args=())
-    x.start()
-
     updater.idle()
-
+  
 if __name__ == "__main__":
     main()

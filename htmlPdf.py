@@ -51,7 +51,6 @@ def pdf(name, db, tipo):
     html = html.replace("<thead></thead>", thead)
     html = html.replace("<tbody></tbody>", tbody)
 
-    pdfkit.from_string(html,'corsiuniversitari.pdf')
-    return 'corsiuniversitari.pdf'
+    return pdfkit.from_string(html, False)
 
 #pdf(name, 1, tipo)
