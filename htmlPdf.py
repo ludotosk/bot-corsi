@@ -48,10 +48,12 @@ def pdf(name, db, tipo):
                 ++i
         tbody += '</tbody>'    
 
-    
+    if i == 1:
+        return 0
+
     f = open("prova.html", "r")
     html = f.read() 
-    html = html.replace("<h1 class='display-6'></h1>", "<h1 class='display-6'>Report corsi di laurea magistrale a ciclo unico in " + name + ".</h1>")
+    html = html.replace("<h1 class='display-6'></h1>", "<h1 class='display-6'>Report " + tipo + " in " + name + ".</h1>")
     html = html.replace("<thead></thead>", thead)
     html = html.replace("<tbody></tbody>", tbody)
 

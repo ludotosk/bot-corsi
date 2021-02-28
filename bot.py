@@ -66,33 +66,47 @@ def main():
         if query.data == '3':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name,1,'Triennale')
-            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
-            query.message.reply_text('Pdf generato.')
+            if file == 0:
+                query.message.reply_text('Pare che questo corso non esista.')
+            else:
+                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.message.reply_text('Pdf generato.')
 
         if query.data == '4':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name,1,'Triennale')
-            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
-            query.message.reply_text('Pdf generato.')
+            if file == 0:
+                query.message.reply_text('Pare che questo corso non esista.')
+            else:
+                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.message.reply_text('Pdf generato.')
 
         if query.data == '5':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name,1,'Triennale')
-            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
-            query.message.reply_text('Pdf generato.')
+            if file == 0:
+                query.message.reply_text('Pare che questo corso non esista.')
+            else:
+                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.message.reply_text('Pdf generato.')
 
         if query.data == '6':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name,2,'Master di Primo Livello')
-            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
-            query.message.reply_text('Pdf generato.')
+            if file == 0:
+                query.message.reply_text('Pare che questo corso non esista.')
+            else:
+                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.message.reply_text('Pdf generato.')
 
         if query.data == '7':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name,2,'Master di Secondo Livello')
-            query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
-            query.message.reply_text('Pdf generato.')
-
+            if file == 0:
+                query.message.reply_text('Pare che questo corso non esista.')
+            else:
+                query.bot.send_document(chat_id=chat_id, document = file, filename = 'report.pdf', caption = None,)
+                query.message.reply_text('Pdf generato.')
         
 
     def risposta(update: Update, context: CallbackContext) -> None:
