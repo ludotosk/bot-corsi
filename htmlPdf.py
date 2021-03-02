@@ -36,7 +36,7 @@ def pdf(name, db, tipo):
         for corso in corsi:
             if re.search(name, corso["n"], re.IGNORECASE):
                 tbody += '<tr><th scope="row">' + str(i) + '</th><td><a href="' + corso["h"] + '">' + corso["n"].replace('à', '&agrave;') + '</a></td><td>' + corso["u"].replace(
-                    'à', '&agrave;') + '</td><td>' + corso["a"] + '</td><td>' + corso["s"] + '</td><tr>'
+                    'à', '&agrave;') + '</td><td>' + corso["a"].replace('ì', '&igrave;') + '</td><td>' + corso["s"] + '</td><tr>'
                 i += 1
         tbody += '</tbody>'
     elif db == 2:

@@ -4,17 +4,15 @@ from htmlPdf import pdf
 from dotenv import load_dotenv
 import os
 from analitycs import nuovoUtente, ricerche
+import threading
+from server import run
 load_dotenv()
-
-# creare log
 
 name = None
 bot = Bot(os.getenv("API_BOT"))
 updater = Updater(os.getenv("API_BOT"), use_context=True)
-os.chdir('/home/pi/Documents/bot-corsi')
 
-
-def main():
+def bot():
     global updater
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
@@ -153,6 +151,18 @@ def main():
     # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
 
+
+def main():
+    os.chdir('/home/pi/Documents/bot-corsi/server')
+    threads = list()
+    # web server
+    server = threading.Thread(target=run, args=(), daemon=True)
+    server.start()
+    # bot
+    x = threading.Thread(target=bot, args=())
+    x.start()
+
+    updater.idle()
 
 if __name__ == "__main__":
     main()
