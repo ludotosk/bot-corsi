@@ -10,7 +10,7 @@ load_dotenv()
 name = None
 bot = Bot(os.getenv("API_BOT"))
 updater = Updater(os.getenv("API_BOT"), use_context=True)
-os.chdir('/home/tosk/bot-corsi')
+os.chdir('/home/pi/Documents/bot-corsi')
 
 def main():
     global updater
