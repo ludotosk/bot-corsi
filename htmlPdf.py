@@ -1,5 +1,3 @@
-# Use False instead of output path to save pdf to a variable
-# pdf = pdfkit.from_url('http://google.com', False)
 import pdfkit
 import requests
 import json
@@ -52,11 +50,10 @@ def pdf(name, db, tipo):
         return 0
 
     f = open("prova.html", "r")
-    html = f.read() 
+    html = f.read()
+    f.close()
     html = html.replace("<h1 class='display-6'></h1>", "<h1 class='display-6'>Report " + tipo + " in " + name + ".</h1>")
     html = html.replace("<thead></thead>", thead)
     html = html.replace("<tbody></tbody>", tbody)
 
     return pdfkit.from_string(html, False)
-
-#pdf(name, 1, tipo)

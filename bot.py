@@ -3,14 +3,16 @@ from telegram.ext import *
 from htmlPdf import pdf
 from dotenv import load_dotenv
 import os
+from analitycs import nuovoUtente, ricerche
 load_dotenv()
 
-#creare log
+# creare log
 
 name = None
 bot = Bot(os.getenv("API_BOT"))
 updater = Updater(os.getenv("API_BOT"), use_context=True)
 os.chdir('/home/pi/Documents/bot-corsi')
+
 
 def main():
     global updater
@@ -22,6 +24,7 @@ def main():
         update.message.reply_text(
             'Benvenuto nel bot di corsiuniversitari.info \nhttps://www.corsiuniversitari.info')
         update.message.reply_text('Quale corso stai cercando?')
+        nuovoUtente()
 
     def cerca(update: Update, context: CallbackContext) -> None:
         """Send a message when the command /start is issued."""
@@ -73,6 +76,7 @@ def main():
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
+            ricerche('Triennale', name)
 
         if query.data == '4':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
@@ -83,6 +87,7 @@ def main():
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
+            ricerche('Magistrale a Ciclo Unico', name)
 
         if query.data == '5':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
@@ -93,6 +98,7 @@ def main():
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
+            ricerche('Magistrale', name)
 
         if query.data == '6':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
@@ -103,6 +109,7 @@ def main():
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
+            ricerche('Master di Primo Livello', name)
 
         if query.data == '7':
             query.message.reply_text('Tra un attimo arriverà un pdf.')
@@ -113,6 +120,7 @@ def main():
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
                 query.message.reply_text('Pdf generato.')
+            ricerche('Master di Secondo Livello', name)
 
     def risposta(update: Update, context: CallbackContext) -> None:
         global name
