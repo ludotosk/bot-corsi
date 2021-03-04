@@ -1,5 +1,5 @@
-from telegram import *
-from telegram.ext import *
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, Bot
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext, MessageHandler, Filters
 from htmlPdf import pdf
 from dotenv import load_dotenv
 import os
@@ -11,6 +11,7 @@ load_dotenv()
 name = None
 bot = Bot(os.getenv("API_BOT"))
 updater = Updater(os.getenv("API_BOT"), use_context=True)
+
 
 def bot():
     global updater
@@ -163,6 +164,7 @@ def main():
     x.start()
 
     updater.idle()
+
 
 if __name__ == "__main__":
     main()
