@@ -1,12 +1,14 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, Bot
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext, MessageHandler, Filters
 from htmlPdf import pdf
-from dotenv import load_dotenv
+from py_dotenv import read_dotenv
 import os
 from analitycs import nuovoUtente, ricerche
 import threading
 from server import run
-load_dotenv()
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+read_dotenv(dotenv_path)
 
 name = None
 bot = Bot(os.getenv("API_BOT"))
@@ -146,7 +148,7 @@ def bot():
 
 
 def main():
-    os.chdir('/home/pi/Documents/bot-corsi/server')
+    os.chdir(os.getcwd() + '/server')
     threads = list()
     # web server
     server = threading.Thread(target=run, args=(), daemon=True)
