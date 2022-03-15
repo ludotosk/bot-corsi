@@ -5,3 +5,4 @@ This bot creates pdf using the API provided by one JSON [server](https://github.
 ```bash
 pip install python-telegram-bot --upgrade && pip install pdfkit && sudo apt-get install wkhtmltopdf && pip install dotenv && pip install py-dotenv
 ```
+After the installation, you have to add a .env file where you have to put API_BOT with API from the father bot.
