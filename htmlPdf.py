@@ -3,7 +3,7 @@ import requests
 import json
 import re
 
-urlCorsi = "https://json-server-corsi.herokuapp.com/corsi"
+urlCorsi = "https://ludotosk.it/corsi"
 urlMaster = "https://json-server-corsi.herokuapp.com/master"
 theadCorsi = "<thead><tr><th scope='col'>#</th><th scope='col'>Nome corso</th><th scope='col'>Unviersit&agrave;</th><th scope='col'>Test</th><th scope='col'>Citt&agrave;</th></tr></thead>"
 theadMaster =  "<thead><tr><th scope='col'>#</th><th scope='col'>Nome corso</th><th scope='col'>Unviersit&agrave;</th><th scope='col'>Durata</th><th scope='col'>Lingua</th><th scope='col'>Citt&agrave;</th></tr></thead>"
