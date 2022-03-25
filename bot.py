@@ -24,11 +24,11 @@ def bot():
         """Send a message when the command /start is issued."""
         update.message.reply_text(
             'Benvenuto nel bot di corsiuniversitari.info \nhttps://www.corsiuniversitari.info')
-        update.message.reply_text('Quale corso stai cercando? \nCerca un pezzo di nome alla volta es: \nPer biotecnologie o biotechnology digitare: biotec')
+        update.message.reply_text('Quale corso stai cercando? \nCerca un pezzo di nome alla volta senza inserire spazi es: \nPer biotecnologie o biotechnology digitare: biotec')
         nuovoUtente()
 
     def cerca(update: Update, context: CallbackContext) -> None:
-        update.message.reply_text('Quale corso stai cercando? \nCerca un pezzo di nome alla volta es: \nPer biotecnologie o biotechnology digitare: biotec')
+        update.message.reply_text('Quale corso stai cercando? \nCerca un pezzo di nome alla volta senza inserire spazi es: \nPer biotecnologie o biotechnology digitare: biotec')
 
     def button(update: Update, context: CallbackContext) -> None:
         query = update.callback_query
@@ -71,7 +71,7 @@ def bot():
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name, 1, 'Triennale')
             if file == 0:
-                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta.')
+                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta e senza spazi.')
             else:
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
@@ -82,7 +82,7 @@ def bot():
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name, 1, 'Magistrale a Ciclo Unico')
             if file == 0:
-                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta.')
+                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta e senza spazi.')
             else:
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
@@ -93,7 +93,7 @@ def bot():
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name, 1, 'Magistrale')
             if file == 0:
-                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta.')
+                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta e senza spazi.')
             else:
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
@@ -104,7 +104,7 @@ def bot():
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name, 2, 'Master di Primo Livello')
             if file == 0:
-                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta.')
+                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta e senza spazi.')
             else:
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
@@ -115,7 +115,7 @@ def bot():
             query.message.reply_text('Tra un attimo arriverà un pdf.')
             file = pdf(name, 2, 'Master di Secondo Livello')
             if file == 0:
-                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta.')
+                query.message.reply_text('Pare che questo corso non esista. \nAttenzione a cercare solo una parola alla volta e senza spazi.')
             else:
                 query.bot.send_document(
                     chat_id=chat_id, document=file, filename='report.pdf', caption=None,)
