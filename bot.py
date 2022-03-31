@@ -24,11 +24,11 @@ def bot():
         """Send a message when the command /start is issued."""
         update.message.reply_text(
             'Benvenuto nel bot di corsiuniversitari.info \nhttps://www.corsiuniversitari.info')
-        update.message.reply_text('Quale corso stai cercando? \nCerca un pezzo di nome alla volta senza inserire spazi es: \nPer biotecnologie o biotechnology digitare: biotec')
+        update.message.reply_text(' Quale corso stai cercando? \nLa ricerca funziona in base al nome del corso, di conseguenza non cercare termini tipo: tutto, milano, cds, lm-9. Solo nomi di corsi, o pezzi di nome come "biotec" che va bene sia per biotecnologie e biotechnology.')
         nuovoUtente()
 
     def cerca(update: Update, context: CallbackContext) -> None:
-        update.message.reply_text('Quale corso stai cercando? \nCerca un pezzo di nome alla volta senza inserire spazi es: \nPer biotecnologie o biotechnology digitare: biotec')
+        update.message.reply_text(' Quale corso stai cercando? \nLa ricerca funziona in base al nome del corso, di conseguenza non cercare termini tipo: tutto, milano, cds, lm-9. Solo nomi di corsi, o pezzi di nome come "biotec" che va bene sia per biotecnologie e biotechnology.')
 
     def button(update: Update, context: CallbackContext) -> None:
         query = update.callback_query
